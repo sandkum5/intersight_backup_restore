@@ -1,5 +1,5 @@
 resource "intersight_kvm_policy" "kvm_policy" {
-    for_each                  = {for kvm in var.kvm : kvm.Name => kvm}
+    for_each = {for vkvm in var.vkvm : vkvm.Name => vkvm}
     name                      = each.value.Name
     description               = each.value.Description
     enabled                   = each.value.Enabled
@@ -14,7 +14,7 @@ resource "intersight_kvm_policy" "kvm_policy" {
     dynamic "tags" {
         for_each = each.value.Tags
         content {
-            key   = tags.value.Key
+            key = tags.value.Key
             value = tags.value.Value
         }
     }

@@ -15,7 +15,7 @@ variable "dc" {
             LockoutEnabled = true
             Organization   = { Name = "default" }
             Profiles       = null
-            Tags           = []
+            Tags           = null
         }]
     description = <<EOT
     Name              : Name of DC policy
@@ -180,7 +180,7 @@ variable "ssh" {
     EOT
 }
 
-variable "kvm" {
+variable "vkvm" {
     type = list(object({
         Name                   = string
         Description            = string
