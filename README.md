@@ -9,4 +9,8 @@
 
 ### Following Objects workflow exists
 - NTP Policy
-
+- DC Policy (Device Connector)
+- SOL Policy (Serial Over LAN)
+- SSH Policy
+- vKVM Policy
+- SMTP Policy
