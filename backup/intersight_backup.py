@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import requests
 import json
-
 from intersight_auth import IntersightAuth
 
 
@@ -15,7 +14,6 @@ def get_object(url):
         # api_key_id=os.getenv("api_key_id"),
     )
     base_url = "https://intersight.com/api/v1/"
-
     expand_url = "$expand=Organization($select=Name),Profiles($select=Name),ClusterProfiles($select=Name)"
     select_url = "$select=Name,Tags,Description,Organization,Profiles,Settings,ConfiguredBootMode,EnforceUefiSecureBoot,BootDevices,LockoutEnabled,Partitions,BaudRate,ComPort,Enabled,SshPort,MinSeverity,SenderEmail,SmtpPort,SmtpRecipients,SmtpServer,Port,Timeout,GlobalHotSpares,M2VirtualDrive,Raid0Drive,UnusedDisksState,UseJbodForVdCreation,DriveGroup,EnableLocalServerVideo,EnableVideoEncryption,MaximumSessions,RemotePort,Mappings,Encryption,LowPowerUsb,CdpEnabled,ForgeMac,LldpSettings,MacRegistrationMode,UplinkFailAction,NetworkPolicy,VlanSettings,PriorityFlowControlMode,ReceiveDirection,SendDirection,LacpRate,SuspendIndividual,UdldSettings,QuerierIpAddress,QuerierIpAddressPeer,QuerierState,SnoopingState,AlternateIpv4dnsServer,AlternateIpv6dnsServer,DynamicDnsDomain,EnableDynamicDns,EnableIpv4dnsFromDhcp,EnableIpv6,EnableIpv6dnsFromDhcp,PreferredIpv4dnsServer,,PreferredIpv6dnsServer,NtpServers,Timezone,EthernetSwitchingMode,FcSwitchingMode,MacAgingSettings,VlanPortOptimizationEnabled,RemoteClients,LocalClients,Classes,AddressType,ConfigurationType,InbandVlan,InbandIpPool,OutOfBandIpPool,PowerProfiling,PowerRestoreState,RedundancyMode,AllocatedBudget,AccessCommunityString,CommunityAccess,EngineId,SnmpPort,SnmpTraps,SnmpUsers,SysContact,SysLocation,TrapCommunity,V2Enabled,V3Enabled,FanControlMode,AddonConfiguration,AddonDefinition,ClusterProfiles,DockerBridgeNetworkCidr,DockerHttpProxy,DockerHttpsProxy,DockerNoProxy,AdminState,ServiceTicketReceipient,DnsDomainName,DnsServers"
     if url != "bios/Policies":
