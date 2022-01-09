@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "intersight" {
-  apikey        = "<your_api_key_id>"
-  secretkey     = "SecretKey.txt"
+  apikey        = "./ApiKey.txt"
+  secretkey     = "./SecretKey.txt"
   endpoint      = "https://intersight.com"
 }
