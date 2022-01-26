@@ -8,9 +8,32 @@
 - intersight_parsed.tfvars.json file is used to recreate the objects using Terraform.
 
 ### Following Objects workflow exists
-- NTP Policy
-- DC Policy (Device Connector)
-- SOL Policy (Serial Over LAN)
-- SSH Policy
-- vKVM Policy
-- SMTP Policy
+`Policies`
+- BIOS
+- DC(Device Connector)
+- Ethernet Adapter
+- Ethernet Network Control
+- Ethernet Network Group
+- Ethernet Network
+- Ethernet QoS
+- IMC Access
+- IPMI
+- LAN Connectivity(Work in Progress)
+- NTP
+- SMTP
+- SOL
+- SSH
+- Syslog
+- VIC Adapter
+- vKVM
+- vMedia
+
+`Pools`
+- FC(WWPN, WWNN)
+- IQN
+- MAC
+- UUID
+- IP
+
+`Profiles`
+- Server (Work in Progress)
