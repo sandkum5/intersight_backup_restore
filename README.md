@@ -18,7 +18,8 @@
 - Ethernet QoS
 - IMC Access
 - IPMI
-- LAN Connectivity(Work in Progress)
+- LAN Connectivity
+- vNIC Eth Interface(Used by LAN CONN Policy)
 - NTP
 - SMTP
 - SOL
