@@ -5,6 +5,7 @@ resource "intersight_vnic_eth_adapter_policy" "eth_adapter" {
   organization {
     object_type = "organization.Organization"
     moid        = data.intersight_organization_organization.data_org_default.results[0].moid
+    # We can't use the selector as expand filter doesn't work under vnic/EthAdapterPolicies yet.
     # selector    = "$filter=Name eq '${each.value.Organization.Name}'"
   }
   dynamic "tags" {
@@ -24,15 +25,41 @@ resource "intersight_vnic_eth_adapter_policy" "eth_adapter" {
     enabled = each.value.ArfsSettings.Enabled
   }
   advanced_filter           = each.value.AdvancedFilter
-  interrupt_scaling         = each.value.InterruptScaling
+  interrupt_settings {
+    coalescing_time = each.value.InterruptSettings.CoalescingTime
+    coalescing_type = each.value.InterruptSettings.CoalescingType
+    nr_count        = each.value.InterruptSettings.Count
+    mode            = each.value.InterruptSettings.Mode
+  }
   geneve_enabled            = each.value.GeneveEnabled
-  roce_settings             = each.value.RoceSettings
-  interrupt_settings        = each.value.InterruptSettings
-  rx_queue_settings         = each.value.RxQueueSettings
-  tx_queue_settings         = each.value.TxQueueSettings
-  completion_queue_settings = each.value.CompletionQueueSettings
+  roce_settings {
+    class_of_service = each.value.RoceSettings.ClassOfService
+    enabled          = each.value.RoceSettings.Enabled
+    memory_regions   = each.value.RoceSettings.MemoryRegions
+    queue_pairs      = each.value.RoceSettings.QueuePairs
+    resource_groups  = each.value.RoceSettings.ResourceGroups
+    nr_version       = each.value.RoceSettings.Version
+  }
+  interrupt_scaling        = each.value.InterruptScaling
+  rx_queue_settings {
+    nr_count  = each.value.RxQueueSettings.Count
+    ring_size = each.value.RxQueueSettings.RingSize
+  }
+  tx_queue_settings {
+    nr_count  = each.value.TxQueueSettings.Count
+    ring_size = each.value.TxQueueSettings.RingSize
+  }
+  completion_queue_settings  {
+    nr_count  = each.value.CompletionQueueSettings.Count
+    ring_size = each.value.CompletionQueueSettings.RingSize
+  }
   uplink_failback_timeout   = each.value.UplinkFailbackTimeout
-  tcp_offload_settings      = each.value.TcpOffloadSettings
+  tcp_offload_settings {
+    large_receive = each.value.TcpOffloadSettings.LargeReceive
+    large_send    = each.value.TcpOffloadSettings.LargeSend
+    rx_checksum   = each.value.TcpOffloadSettings.RxChecksum
+    tx_checksum   = each.value.TcpOffloadSettings.TxChecksum
+  }
   rss_settings              = each.value.RssSettings
   rss_hash_settings {
     ipv4_hash         = each.value.RssHashSettings.Ipv4Hash
