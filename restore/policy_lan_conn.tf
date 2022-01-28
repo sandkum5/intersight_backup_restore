@@ -24,7 +24,7 @@ resource "intersight_vnic_lan_connectivity_policy" "lan_conn" {
     for_each = each.value.IqnPool != null ? [1] : []
     content {
       object_type = "iqnpool.Pool"
-      selector    = "$filter=Name eq '${each.value.IqnPool.Name}'"
+      selector    = "$filter=Name eq '${try(each.value.IqnPool.Name, "")}'"
     }
   }
 }
