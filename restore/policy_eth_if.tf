@@ -1,5 +1,13 @@
 resource "intersight_vnic_eth_if" "eth_if" {
-  depends_on = [intersight_vnic_lan_connectivity_policy.lan_conn]
+  depends_on = [
+    intersight_vnic_lan_connectivity_policy.lan_conn,
+    intersight_vnic_eth_adapter_policy.eth_adapter,
+    intersight_vnic_eth_network_policy.eth_net,
+    intersight_vnic_eth_qos_policy.eth_qos,
+    intersight_fabric_eth_network_control_policy.eth_net_control,
+    intersight_fabric_eth_network_group_policy.eth_net_group,
+    intersight_macpool_pool.mac_pool
+  ]
   for_each    = { for entry in var.eth_ifs : entry.Moid => entry }
   name        = each.value.Name
   dynamic "tags" {
